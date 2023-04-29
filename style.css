@@ -55,3 +55,17 @@
 .keyboard-key .active {
   background: #303075;
 }
+
+.keyboard-description {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 26px;
+  text-align: center;
+  color: #303075;
+}
+
+.language {
+  font-size: 26px;
+  text-align: center;
+  color: #303075;
+}

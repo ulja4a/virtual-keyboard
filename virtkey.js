@@ -1,12 +1,16 @@
 const title = document.createElement("h1");
 const textarea = document.createElement("textarea");
 const keyboard = document.createElement("div");
+const keyboardDescription = document.createElement("p");
+const language = document.createElement("p");
 
 // Добавление класса
 document.body.classList.add("body");
 title.classList.add("title");
 textarea.classList.add("textarea");
 keyboard.classList.add("keyboard");
+keyboardDescription.classList.add("keyboard-description");
+language.classList.add("language");
 
 
 //Создание кнопок
@@ -53,7 +57,9 @@ for (let i = 0; i < keys.length; i++) {
 title.textContent = "RSS Virtual keyboard";
 textarea.rows = 5;
 textarea.cols = 50;
-textarea.placeholder = 'Enter your text ...'
+textarea.placeholder = 'Enter your text ...';
+keyboardDescription.textContent = "The keyboard was created in the Windows operating system";
+language.textContent = "To switch the language combination: left ctrl + alt"
 
 // Привязка клика мыши по клавиатуре и вывод в поле textarea
 keyboard.addEventListener("click", (e) => {
@@ -66,4 +72,5 @@ keyboard.addEventListener("click", (e) => {
 document.body.appendChild(title);
 document.body.appendChild(textarea);
 document.body.appendChild(keyboard);
-
+document.body.appendChild(keyboardDescription);
+document.body.appendChild(language);
