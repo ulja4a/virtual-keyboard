@@ -50,10 +50,17 @@
   background: #4b4949;
   border-radius: 5px;
   cursor: pointer;
+  transition: border-radius 0.3s, background-color 0.3s
 }
 
-.keyboard-key .active {
+.keyboard-key:hover {
+  background: #d3830b;
+}
+
+.highlight {
   background: #303075;
+  border: 2px solid #d3830b;
+  
 }
 
 .keyboard-description {

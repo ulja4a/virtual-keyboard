@@ -53,6 +53,26 @@ for (let i = 0; i < keys.length; i++) {
   keyboard.appendChild(row);
 }
 
+// Нажатие на кнопки, событие keydown
+document.addEventListener("keydown", (e) => {
+  // Находим кнопку на экранной клавиатуре, соответствующую нажатой клавише
+  const key = document.querySelector(`.keyboard-key[data-code="${e.code}"]`);
+  // Если кнопка найдена, подсвечиваем ее
+  if (key) {
+    key.classList.add("highlight");
+  }
+});
+
+// Отпускаем кнопки, событие keyup
+document.addEventListener("keyup", (e) => {
+  // Находим кнопку на экранной клавиатуре, соответствующую отпущенной клавише
+  const key = document.querySelector(`.keyboard-key[data-code="${e.code}"]`);
+  // Если кнопка найдена, убираем подсветку
+  if (key) {
+    key.classList.remove("highlight");
+  }
+});
+
 // Установка св-в и текстового содержимого
 title.textContent = "RSS Virtual keyboard";
 textarea.rows = 5;
@@ -63,8 +83,23 @@ language.textContent = "To switch the language combination: left ctrl + alt"
 
 // Привязка клика мыши по клавиатуре и вывод в поле textarea
 keyboard.addEventListener("click", (e) => {
+  const key = e.target;
+  const keycode = key.dataset.code;
+  console.log(keycode);
+// Кнопка Backspace, если нажата
   if (e.target.classList.contains("keyboard-key")) {
+    if (keycode === "Backspace") {
+      const selectionStart = textarea.selectionStart;
+      const selectionEnd = textarea.selectionEnd;
+// Проверяем где курсор и получаем новую строку с курсором сдвинутім влево    
+    if (selectionStart === selectionEnd) {
+      e.preventDefault();
+      textarea.value = textarea.value.substring(0, selectionStart - 1) + textarea.value.substring(selectionEnd);
+      textarea.setSelectionRange(selectionStart - 1, selectionStart - 1);
+    } 
     textarea.value += e.target.textContent;
+  
+}
   }
 });
 
