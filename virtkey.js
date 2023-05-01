@@ -87,18 +87,22 @@ textarea.placeholder = 'Enter your text ...';
 keyboardDescription.textContent = "The keyboard was created in the Windows operating system";
 language.textContent = "To switch the language combination: left ctrl + alt"
 
-// Привязка клика мыши по клавиатуре и вывод в поле textarea
+// Привязка клика мыши по клавиатуре и вывод в поле textarea, добавление класса при нажатии
   keyboard.addEventListener("mousedown", (e) => {
     const key = e.target;
-    const keycode = key.dataset.code;
     key.classList.add("highlight");
-    
-    
-// Кнопка Backspace, если нажата
+  });
+
+  keyboard.addEventListener("mouseup", (e) => {
+    const key = e.target;
+    const keycode = key.dataset.code;
+    key.classList.remove("highlight");
+
+    // Кнопка Backspace, если нажата
     if (keycode === "Backspace") {
       const selectionStart = textarea.selectionStart;
       const selectionEnd = textarea.selectionEnd;
-// Проверяем где курсор и получаем новую строку с курсором сдвинутім влево    
+    // Проверяем где курсор и получаем новую строку с курсором сдвинутім влево    
       if (selectionStart === selectionEnd) {
         e.preventDefault();
         textarea.value = textarea.value.substring(0, selectionStart - 1) + textarea.value.substring(selectionEnd);
@@ -106,14 +110,14 @@ language.textContent = "To switch the language combination: left ctrl + alt"
       } else {
         textarea.value = textarea.value.slice(0, -1);
       }
+    } else 
+// Кнопка Enter
+    if (keycode === "Enter") {
+      e.preventDefault();
+      textarea.value += "\n";
     } else {
-      textarea.value += e.target.textContent;
+      textarea.value += key.textContent;
     }
-  });
-
-  keyboard.addEventListener("mouseup", (e) => {
-    const key = e.target;
-    key.classList.remove("highlight");
   });
 
 // Добавление элемента на страницу
