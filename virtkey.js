@@ -112,9 +112,15 @@ keyboard.addEventListener('mouseup', (e) => {
   if (keycode === 'Enter') {
     e.preventDefault();
     textarea.value += '\n';
-  } else {
+  } else
+  // Кнопка Tab
+  if (keycode === 'Tab') {
+    e.preventDefault();
+    textarea.value += '\t';
+  } else  {
     textarea.value += key.textContent;
   }
+
 });
 
 // Добавление элемента на страницу
