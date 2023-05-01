@@ -57,10 +57,14 @@
   background: #d3830b;
 }
 
+.keyboard-key:active {
+  background: #4b4949;
+}
+
 .highlight {
-  background: #303075;
+  background: #dbdbe7;
   border: 2px solid #d3830b;
-  
+  color: #303075;
 }
 
 .keyboard-description {
@@ -75,4 +79,10 @@
   font-size: 26px;
   text-align: center;
   color: #303075;
+}
+
+.backspace {
+  flex: 1 0 auto;
+  width: auto;
+  background: #0f0f0f;
 }
