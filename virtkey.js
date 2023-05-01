@@ -50,6 +50,18 @@ for (let i = 0; i < keys.length; i += 1) {
     if (keys[i][j].code === 'Backspace') {
       key.classList.add('backspace');
     }
+    if (keys[i][j].code === 'Tab' || keys[i][j].code === 'En_Ru' || keys[i][j].code === 'CapsLock'
+    || keys[i][j].code === 'Enter' || keys[i][j].code === 'ShiftLeft' || keys[i][j].code === 'ShiftRight') {
+      key.classList.add('tab');
+    }
+    if (keys[i][j].code === 'Space') {
+      key.classList.add('space');
+    }
+    if (keys[i][j].code === 'ControlLeft' || keys[i][j].code === 'MetaLeft' || keys[i][j].code === 'AltLeft'
+    || keys[i][j].code === 'AltRight' || keys[i][j].code === 'ArrowLeft' || keys[i][j].code === 'ArrowDown'
+    || keys[i][j].code === 'ArrowRight' || keys[i][j].code === 'ControlRight' || keys[i][j].code === 'ArrowUp') {
+      key.classList.add('dark');
+    }
     row.appendChild(key);
   }
   keyboard.appendChild(row);
@@ -117,10 +129,9 @@ keyboard.addEventListener('mouseup', (e) => {
   if (keycode === 'Tab') {
     e.preventDefault();
     textarea.value += '\t';
-  } else  {
+  } else {
     textarea.value += key.textContent;
   }
-
 });
 
 // Добавление элемента на страницу
