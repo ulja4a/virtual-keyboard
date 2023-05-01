@@ -14,7 +14,7 @@ language.classList.add("language");
 
 
 //Создание кнопок
-const keys = [  
+let keys = [  
   [{label: "`", code: "Backquote"}, {label: "1", code: "Digit1"},
    {label: "2", code: "Digit2"}, {label: "3", code: "Digit3"},
    {label: "4", code: "Digit4"}, {label: "5", code: "Digit5"},
@@ -40,32 +40,6 @@ const keys = [
    {label: "Ctrl", code: "ControlRight"}]
 ];
 
-//Для ру раскладки
-const keysRu = [  
-  [{label: "ё", code: "Backquote"}, {label: "1", code: "Digit1"},
-   {label: "2", code: "Digit2"}, {label: "3", code: "Digit3"},
-   {label: "4", code: "Digit4"}, {label: "5", code: "Digit5"},
-   {label: "6", code: "Digit6"}, {label: "7", code: "Digit7"},
-   {label: "8", code: "Digit8"}, {label: "9", code: "Digit9"},
-   {label: "0", code: "Digit0"}, {label: "-", code: "Minus"},
-   {label: "=", code: "Equal"}, {label: "Backspace", code: "Backspace"}],
-  [{label: "Tab", code: "Tab"}, {label: "й", code: "KeyQ"}, {label: "ц", code: "KeyW"}, {label: "у", code: "KeyE"},
-   {label: "к", code: "KeyR"}, {label: "е", code: "KeyT"}, {label: "н", code: "KeyY"}, {label: "г", code: "KeyU"},
-   {label: "ш", code: "KeyI"}, {label: "щ", code: "KeyO"}, {label: "з", code: "KeyP"}, {label: "х", code: "BracketLeft"},
-   {label: "ъ", code: "BracketRight"}, {label: "\\", code: "Backslash"}, {label: "En/Ru", code: "En_Ru"}],
-  [{label: "CapsLock", code: "CapsLock"}, {label: "ф", code: "KeyA"}, {label: "ы", code: "KeyS"},
-   {label: "в", code: "KeyD"}, {label: "а", code: "KeyF"}, {label: "п", code: "KeyG"}, 
-   {label: "р", code: "KeyH"}, {label: "о", code: "KeyJ"}, {label: "л", code: "KeyK"},
-   {label: "д", code: "KeyL"}, {label: "ж", code: "Semicolon"}, {label: "э", code: "Quote"}, {label: "Enter", code: "Enter"}],
-  [{label: "Shift", code: "ShiftLeft"}, {label: "я", code: "KeyZ"}, {label: "ч", code: "KeyX"},
-   {label: "с", code: "KeyC"}, {label: "м", code: "KeyV"}, {label: "и", code: "KeyB"}, {label: "т", code: "KeyN"},
-   {label: "ь", code: "KeyM"}, {label: "б", code: "Comma"}, {label: "ю", code: "Period"},
-   {label: ".", code: "Slash"}, {label: "↑", code: "ArrowUp"}, {label: "Shift", code: "ShiftRight"}],
-  [{label: "Ctrl", code: "ControlLeft"}, {label: "Win", code: "MetaLeft"},
-   {label: "Alt", code: "AltLeft"}, {label: " ", code: "Space"}, {label: "Alt", code: "AltRight"},
-   {label: "←", code: "ArrowLeft"}, {label: "↓", code: "ArrowDown"}, {label: "→", code: "ArrowRight"},
-   {label: "Ctrl", code: "ControlRight"}]
-];
 
 for (let i = 0; i < keys.length; i++) {
   const row = document.createElement("div");
@@ -103,6 +77,8 @@ document.addEventListener("keyup", (e) => {
   }
 });
 
+
+
 // Установка св-в и текстового содержимого
 title.textContent = "RSS Virtual keyboard";
 textarea.rows = 5;
@@ -112,11 +88,12 @@ keyboardDescription.textContent = "The keyboard was created in the Windows opera
 language.textContent = "To switch the language combination: left ctrl + alt"
 
 // Привязка клика мыши по клавиатуре и вывод в поле textarea
-keyboard.addEventListener("click", (e) => {
-  const key = e.target;
-  const keycode = key.dataset.code;
-  console.log(keycode);
-  
+  keyboard.addEventListener("mousedown", (e) => {
+    const key = e.target;
+    const keycode = key.dataset.code;
+    key.classList.add("highlight");
+    
+    
 // Кнопка Backspace, если нажата
     if (keycode === "Backspace") {
       const selectionStart = textarea.selectionStart;
@@ -132,6 +109,11 @@ keyboard.addEventListener("click", (e) => {
     } else {
       textarea.value += e.target.textContent;
     }
+  });
+
+  keyboard.addEventListener("mouseup", (e) => {
+    const key = e.target;
+    key.classList.remove("highlight");
   });
 
 // Добавление элемента на страницу
