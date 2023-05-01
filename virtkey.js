@@ -86,22 +86,23 @@ keyboard.addEventListener("click", (e) => {
   const key = e.target;
   const keycode = key.dataset.code;
   console.log(keycode);
+  
 // Кнопка Backspace, если нажата
-  if (e.target.classList.contains("keyboard-key")) {
     if (keycode === "Backspace") {
       const selectionStart = textarea.selectionStart;
       const selectionEnd = textarea.selectionEnd;
 // Проверяем где курсор и получаем новую строку с курсором сдвинутім влево    
-    if (selectionStart === selectionEnd) {
-      e.preventDefault();
-      textarea.value = textarea.value.substring(0, selectionStart - 1) + textarea.value.substring(selectionEnd);
-      textarea.setSelectionRange(selectionStart - 1, selectionStart - 1);
-    } 
-    textarea.value += e.target.textContent;
-  
-}
-  }
-});
+      if (selectionStart === selectionEnd) {
+        e.preventDefault();
+        textarea.value = textarea.value.substring(0, selectionStart - 1) + textarea.value.substring(selectionEnd);
+        textarea.setSelectionRange(selectionStart - 1, selectionStart - 1);
+      } else {
+        textarea.value = textarea.value.slice(0, -1);
+      }
+    } else {
+      textarea.value += e.target.textContent;
+    }
+  });
 
 // Добавление элемента на страницу
 document.body.appendChild(title);
